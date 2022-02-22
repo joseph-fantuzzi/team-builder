@@ -13,14 +13,16 @@ function App() {
   const [currentTeam, setCurrentTeam] = useState(initialTeam);
   const [team, setTeam] = useState([]);
   const [appearance, setAppearance] = useState(false);
+  const [error, setError] = useState("");
 
   return (
     <div className="container">
       <h1 className="title">Team Builder</h1>
-      <Form setAppearance={setAppearance} initialTeam={initialTeam} team={team} setTeam={setTeam} currentTeam={currentTeam} setCurrentTeam={setCurrentTeam} />
+      {error && <h2 className="error-msg">{error}</h2>}
+      <Form setError={setError} setAppearance={setAppearance} initialTeam={initialTeam} team={team} setTeam={setTeam} currentTeam={currentTeam} setCurrentTeam={setCurrentTeam} />
       {appearance && (
         <div className="member-container">
-          <h1>Team Members:</h1>
+          <h1 className="team-title">Team Members:</h1>
           {team.map((member, index) => {
             return <Member key={index} member={member} />;
           })}
